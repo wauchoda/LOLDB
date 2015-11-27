@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-
+/* no user is logged on */
 require_once ("Includes/db.php");
 $logonSuccess = false;
 
