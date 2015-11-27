@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Getting LOLDB setup
 
 1. Save package in the htdocs directory of xxamp
@@ -31,3 +32,6 @@ save the file (ctrs+s)
 14. open a browser. in your url field, typle localhost/LOLDB
 15. If all was done correctly, assuming I detailed the steps correctly,
     you should now see a simple website powered by php.
+=======
+README FOR LOLDB
+>>>>>>> origin/master
