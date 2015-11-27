@@ -38,6 +38,7 @@
             parent::set_charset('utf-8');
         }
         
+        //selects user name via users id
         public function get_user_id_by_username($username) {
 
             $username = $this->real_escape_string($username);
@@ -51,14 +52,31 @@
             } else
                 return null;
         }
+        
+        //selects id information for user
         public function get_stats_by_user_id($userID) {
             return $this->query("SELECT id, username, wins, losses, kills, deaths, assists FROM stats WHERE id=" . $userID);
         }
+        
+        //creates new user at sign up and adds to MySQL table
         public function create_user ($username, $password){
             $username = $this->real_escape_string($username);
             $password = $this->real_escape_string($password);
             $this->query("INSERT INTO user (username, password) values ('" . $username . "', '" . $password . "')");
         }
+        
+        //function to check username/password upon login attempt.
+        //if user/pass match returns true, else returns false.
+        public function verify_user_credentials ($username, $password) {
+            $username = $this->real_escape_string($username);
+            
+            $password = $this->real_escape_string($password);
+            $result = $this->query("select 1 from user where username = '" . $username . "' and password = '" . $password . "'");
+            return $result->data_seek(0);
+            
+        }
+        
+        
     }
 /* 
  * To change this license header, choose License Headers in Project Properties.
