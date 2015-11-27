@@ -8,7 +8,7 @@
         private $user = 'root';
         private $pass = '';
         private $dbName = 'leaguedb';
-        private $dbHost = 'localhost';
+        private $dbHost = 'localhost:3306';
         
          //This method must be static, and must return an instance of the object if the object
         //does not already exist.
@@ -45,8 +45,8 @@
             $user = $this->query("SELECT id FROM user WHERE username = '"
 
                     . $username . "'");
-            if ($username->num_rows > 0){
-                $row = $username->fetch_row();
+            if ($user->num_rows > 0){
+                $row = $user->fetch_row();
                 return $row[0];
             } else
                 return null;

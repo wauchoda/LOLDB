@@ -1,4 +1,5 @@
 <?php
+session_start();
 /// database connection call
 require_once("Includes/db.php");
 /** other variables */
@@ -34,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      */
     if (!$userIsEmpty && $userNameIsUnique && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
         LeagueDB::getInstance()->create_user($_POST["user"], $_POST["password"]);
+        
+        $_SESSION["userID"] = $_POST['user'];
+        //echo $_SESSION["userID"];
         header('Location: editStats.php' );
         exit;
     }
