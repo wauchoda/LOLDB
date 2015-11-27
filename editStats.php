@@ -7,9 +7,8 @@ and open the template in the editor.
 <?php
     session_start();
     //echo 'test' . $_SESSION["userID"];
-    if ($_SESSION["userID"]) {
-        echo 'Yes';
-        echo "Hello " . $_SESSION["userID"];
+    if ($_SESSION["user"]) {
+        echo "Hello " . $_SESSION["user"];
     }
     else
     {
@@ -21,7 +20,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
     </head>
-    <body><p>hello world</p>
+    <body><p><!--message here---></p>
         
     </body>
 </html>
