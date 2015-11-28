@@ -43,7 +43,7 @@
                        LeagueDB::getInstance()->insert_stats($_SESSION['user'], $_POST["wins"], $_POST["losses"], $_POST["kills"], $_POST["deaths"], $_POST["assists"]);
                        //disabled to test insert into stats functionn in db.php
                        //redirects to editStats.php
-                        //header('Location: editStats.php');
+                        header('Location: editStats.php');
                        exit;
                     }
                 }
@@ -64,7 +64,6 @@
             ?> 
         
         <!-- allows user to see their last input on update stats--->
-        <!-- this is where Levi left of on 11/26/2015 --->
         <form name="editStat" action="editStat.php" method="POST">
             How many games have you won? <input type="text" name="wins" value="<?php echo $stats["wins"];?>" /><br/>
             How many games have you lost? <input type="text" name="losses" value="<?php echo $stats["losses"];?>"/><br/>

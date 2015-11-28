@@ -11,7 +11,7 @@
         private $dbName = 'leaguedb';
         private $dbHost = 'localhost:3306';
         
-         //This method must be static, and must return an instance of the object if the object
+        //This method must be static, and must return an instance of the object if the object
         //does not already exist.
         public static function getInstance() {
           if (!self::$instance instanceof self) {
@@ -80,23 +80,14 @@
         //insert new stats to database
         //create insert to database function that accepts username from session
         function insert_stats($username, $wins, $losses, $kills, $deaths, $assists){
-            //if test to check
-            //if username is being delivered by session
-            if ($username == 'manticore') {
-                echo ('true');
-            } else {
-                echo ('well, crap');
-            }
-            $username = $_SESSION["user"];
+            
             $wins = $this->real_escape_string($wins);
             $losses = $this->real_escape_string($losses);
             $kills = $this->real_escape_string($kills);
             $deaths = $this->real_escape_string($deaths);
             $assists = $this->real_escape_string($assists);
-            //this is causing me some issues. 
-            //it is supposed to insert the updated stats into the stats table
-            $this->query("INSERT INTO stats (username, wins, losses, kills, deaths, assists)
-                     VALUES ('" . $username . "', '" . $wins. "', '" . $losses . "', '" . $kills . "', '" . $deaths . "', '" . $assists . "')");
+            //SQL Update clause for users stats
+            $this->query("UPDATE stats SET wins = '$wins', losses = '$losses', kills = '$kills', deaths = '$deaths', assists = '$assists' WHERE username = '$username'");
 
         }
         
