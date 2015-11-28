@@ -25,21 +25,25 @@
             $statAssistsIsEmpty = false;
             if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 if (array_key_exists("back", $_POST)) {
-                    header('Location: editStat.php' ); 
+                    header('Location: editStats.php' ); 
                    exit;
                 } else {
                     if ($_POST['wins'] == "") {
                         $statWinsIsEmpty =  true;
+                        echo ("Enter number of wins.");
                     } elseif ($_POST['losses'] == "") {
                         $statLossesIsEmpty = true;
+                        echo("Enter number of losses.");
                     } elseif ($_POST['kills'] == "") {
                         $statKillsIsEmpty = true;
+                        echo ("Enter number of kills.");
                     } elseif ($_POST['deaths'] == "") {
                         $statDeathsIsEmpty = true;
+                        echo ("Enter number of deaths.");
                     } elseif ($_POST['assists'] == "") {
                         $statAssistsIsEmpty = true;
-                    } else {
-                       echo ('I got this far!');        
+                        echo ("Enter number of assists.");
+                    } else {      
                        LeagueDB::getInstance()->insert_stats($_SESSION['user'], $_POST["wins"], $_POST["losses"], $_POST["kills"], $_POST["deaths"], $_POST["assists"]);
                        //disabled to test insert into stats functionn in db.php
                        //redirects to editStats.php

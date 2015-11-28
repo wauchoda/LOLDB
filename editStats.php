@@ -40,6 +40,10 @@ and open the template in the editor.
         <form name ="addNewStat" action="editStat.php">
             <input type="submit" value="Update Stats">
         </form>
+        <!-- return to index page--->
+        <form name="backToMainPage" action="index.php">
+        <input type="submit" value="Back To Main Page"/>
+        </form>
         
     </body>
 </html>

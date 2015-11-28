@@ -39,5 +39,9 @@ and open the template in the editor.
         }
         mysqli_free_result($result);
         ?>
+        <!-- back to main page--->
+        <form name="backToMainPage" action="index.php">
+        <input type="submit" value="Back To Main Page"/>
+        </form>
     </body>
 </html>
