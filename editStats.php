@@ -6,7 +6,6 @@ and open the template in the editor.
 -->
 <?php
     session_start();
-    //echo 'test' . $_SESSION["userID"];
     if ($_SESSION["user"]) {
         echo "Hello " . $_SESSION["user"];
     }

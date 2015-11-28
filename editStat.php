@@ -7,6 +7,48 @@
     </head>
     <body>
             <?php 
+            //receive session data. if user is not logged on redirect
+            session_start();
+            if (!array_key_exists("user", $_SESSION)) {
+                header('Location: index.php');
+                exit;
+            }
+            
+            require_once ("Includes/db.php");
+            //$userID = LeagueDB::getInstance()->get_user_id_by_username($_SESSION['user']);
+            //echo ($_SESSION['user']); test print of user name <-
+            $username = ($_SESSION["user"]);
+            $statWinsIsEmpty = false;
+            $statLossesIsEmpty = false;
+            $statKillsIsEmpty = false;
+            $statDeathsIsEmpty = false;
+            $statAssistsIsEmpty = false;
+            if ($_SERVER['REQUEST_METHOD'] == "POST"){
+                if (array_key_exists("back", $_POST)) {
+                    header('Location: editStat.php' ); 
+                   exit;
+                } else {
+                    if ($_POST['wins'] == "") {
+                        $statWinsIsEmpty =  true;
+                    } elseif ($_POST['losses'] == "") {
+                        $statLossesIsEmpty = true;
+                    } elseif ($_POST['kills'] == "") {
+                        $statKillsIsEmpty = true;
+                    } elseif ($_POST['deaths'] == "") {
+                        $statDeathsIsEmpty = true;
+                    } elseif ($_POST['assists'] == "") {
+                        $statAssistsIsEmpty = true;
+                    } else {
+                       echo ('I got this far!');        
+                       LeagueDB::getInstance()->insert_stats($_SESSION['user'], $_POST["wins"], $_POST["losses"], $_POST["kills"], $_POST["deaths"], $_POST["assists"]);
+                       //disabled to test insert into stats functionn in db.php
+                       //redirects to editStats.php
+                        //header('Location: editStats.php');
+                       exit;
+                    }
+                }
+            }
+            
             if ($_SERVER["REQUEST_METHOD"] == "POST")
                 $stats = array("wins" => $_POST["wins"], 
                 "losses" => $_POST["losses"],
