@@ -46,8 +46,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               ?>
             <input type="submit" value="Login">
         </form>
-        <form name="backToMainPage" action="index.php">
-        <input type="submit" value="Back To Main Page"/>
-        </form>
     </body>
 </html>

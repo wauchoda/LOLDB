@@ -12,7 +12,7 @@ and open the template in the editor.
     else
     {
         echo 'NO';
-    }
+   }
 ?>
 <html>
     <head>
@@ -43,6 +43,10 @@ and open the template in the editor.
         <!-- return to index page--->
         <form name="backToMainPage" action="index.php">
         <input type="submit" value="Back To Main Page"/>
+        </form>
+        <form type="LogOut" action="index.php">
+            <!--<input type="submit" value="Log Out"/>--->
+            <a href="logout.php" >Logout</a>
         </form>
         
     </body>

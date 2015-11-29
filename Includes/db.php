@@ -63,7 +63,12 @@
         public function create_user ($username, $password){
             $username = $this->real_escape_string($username);
             $password = $this->real_escape_string($password);
+            
+            //$this->query("CALL create_new_user($username, $password)");
+            //creates new user via insert statement
+            //we can replace the below to lines with a single MySQL stored procedure for a 20% bonus on the grade.
             $this->query("INSERT INTO user (username, password) values ('" . $username . "', '" . $password . "')");
+            $this->query("INSERT INTO stats (username, wins, losses, kills, deaths, assists) VALUES ('$username', '0', '0', '0', '0', '0')");
         }
         
         //function to check username/password upon login attempt.
@@ -80,7 +85,7 @@
         //insert new stats to database
         //create insert to database function that accepts username from session
         function insert_stats($username, $wins, $losses, $kills, $deaths, $assists){
-            
+            //$username = $_SESSION['user'];
             $wins = $this->real_escape_string($wins);
             $losses = $this->real_escape_string($losses);
             $kills = $this->real_escape_string($kills);
@@ -88,7 +93,8 @@
             $assists = $this->real_escape_string($assists);
             //SQL Update clause for users stats
             $this->query("UPDATE stats SET wins = '$wins', losses = '$losses', kills = '$kills', deaths = '$deaths', assists = '$assists' WHERE username = '$username'");
-
+            //$this->query("INSERT INTO stats (username, wins, loses, kills, deaths, assists
+                            //SELECT '$username', '$wins', '$losses', '$kills', '$deaths', '$assists'");
         }
         
     }

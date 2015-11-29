@@ -34,10 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      * After adding the new entry, close the connection and redirect the application to editWishList.php.
      */
     if (!$userIsEmpty && $userNameIsUnique && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
+        //$sql = LeagueDB::getInstance();
+        //$result = mysqli_query($sql, 
+            //"CALL create_new_user" . ($_POST['user'] . "," . $_POST['password']));
         LeagueDB::getInstance()->create_user($_POST["user"], $_POST["password"]);
-        
-        $_SESSION["userID"] = $_POST['user'];
-        //echo $_SESSION["userID"];
+        //$this->query("CALL create_new_user($username, $password)");
+        $_SESSION["user"] = $_POST['user'];
+        echo $_SESSION["user"];
         header('Location: editStats.php' );
         exit;
     }
