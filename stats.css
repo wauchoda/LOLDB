@@ -1,0 +1,168 @@
+body {
+    font-family: arial, helvetica;
+    font-size: 12px;
+    background-color: #fafafa;
+}
+input {
+    font-family: arial, helvetica;
+    font-size: 12px;
+}
+td {
+    font-family: arial, helvetica;
+    font-size: 12px;
+}
+th {
+    font-family: arial, helvetica;
+    font-size: 14px;
+}
+h1 {
+    font-family: arial, helvetica;
+    font-size: 24px;
+    color: #069;
+}
+form {
+    margin: 0;
+    padding: 10px;
+}
+a {
+    color: #069;
+}
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-top:10px;
+    margin-bottom: 2px;
+}
+#content {
+    width: 800px;
+    margin: 0 auto;
+}
+
+logon {
+    display: inline-block;
+    text-align: center;
+}
+
+.logon {
+    font-size: 18px;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+    
+    position: absolute;
+    top:0;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    
+    margin: auto;
+}
+
+.logon input {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+leaguedb {
+    display: inline-block;
+    text-align: center;
+    margin:  50%;
+}
+.showStats {
+    text-align: center;
+    padding-top: 10px;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.showStats input {
+    font-size: 18px;
+}
+.error {
+    color: #c00;
+    margin-bottom: 10px;
+}
+.createStats {
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 385px;
+    color: blue;
+    font-size: 30px;
+}
+.logo {
+    width: 600px;
+    float:left;
+}
+
+.welcome {
+    top: 10%;
+    text-align: center;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    color: teal;
+}                      
+
+.enterData {
+    position: relative;
+    left: 35%;
+    vertical-align: top;
+}
+
+.button {
+    left: 10%;
+    top: 10%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.table {
+    position: absolute;
+    top: 20%;
+    text-align: center;
+    margin-left: 43.5%;
+
+}
+
+editStatss {
+    margin: 50px;
+}
+
+.buttonsOnEditStats {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+}
+
+table.std {
+    margin-bottom: 15px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border: 1px solid #ccc;
+    *border-collapse: expression('separate', cellSpacing = '0px'); /* ie fix */
+}
+table.std th {
+    background-color: #cbe3f3;
+    padding: 6px 12px;
+    color: #4c2c00;
+    font-weight: bold;
+    border-bottom: 1px solid #acc7dd;
+    border-right: 1px solid #acc7dd;
+    border-top: 1px solid #dceffd;
+    border-left: 1px solid #dceffd;
+}
+table.std td {
+    padding: 6px 12px;
+    border-bottom: 1px solid #c7d8e5;
+    border-right: 1px solid #c7d8e5;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    color:#333;
+    background-color: #eaf1f7;
+}

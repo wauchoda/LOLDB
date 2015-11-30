@@ -24,27 +24,64 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <html>
     <head>
+        <link href="stats.css" type="text/css" rel="stylesheet" media="all" />
         <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
-        <form name="leaguedb" action="leaguedb.php">
-            Show summoner information of: <input type="text" name="user" value="" />
-            <input type="submit" value="Go" />
-        </form>
+        <div class ="showStats">
+            <input type="submit" name="stats" value="Show Stats of" onclick="javascript:showHideShowStatsForm()"/>
+            <form name="leaguedb" action="leaguedb.php" style="visibility: hidden">
+                <input type="text" name="user" />
+                <input type="submit" value="Go" />
+            </form>
+        </div>
+        
         <!-- create profile--->
-        <br>Want to keep track of your stats? <a href="createNewUser.php">Create profile now</a>
-        <form name="logon" action="index.php" method="POST" >
+        <div class="createUser">
+            <!--<br>Want to keep track of your stats? <a href="createNewUser.php">Create profile now</a>--->
+        </div>
+        
+        <div class="logon">
+            <input type="submit" name="MyStats" value="My Stats" onclick="javascript:showHideLogonForm()"/>
+                <form name="logon" action="index.php" method="POST" 
+                        style="visibility: <?php if ($logonSuccess) echo "hidden"; else echo "visible";?>">
             Username: <input type="text" name="user">
             Password  <input type="password" name="userpassword">
-            <?php
-            /* displays error message on unsuccesful login*/
-                if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-                    if (!$logonSuccess)
-                        echo "Invalid name and/or password";
+            <div class="error">
+                <?php
+                /* displays error message on unsuccesful login*/
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+                        if (!$logonSuccess)
+                            echo "Invalid name and/or password";
+                    }
+                  ?>
+            </div>
+                <input type="submit" value="Login">
+            </form>
+            <br>Want to keep track of your stats?<br> <a href="createNewUser.php">Create profile now</a>
+        </div>
+        <script>
+            function showHideLogonForm() {
+                if (document.all.logon.style.visibility == "visible"){
+                    document.all.logon.style.visibility = "hidden";
+                    document.all.myStats.value = "My Stats >>";
+                } 
+                else {
+                    document.all.logon.style.visibility = "visible";
+                    document.all.myStats.value = "<< My Stats";
                 }
-              ?>
-            <input type="submit" value="Login">
-        </form>
+            }
+            function showHideShowStatsForm() {
+                if (document.all.leaguedb.style.visibility == "visible") {
+                    document.all.leaguedb.style.visibility = "hidden";
+                    document.all.showStats.value = "Show Stats of >>";
+                }
+                else {
+                    document.all.leaguedb.style.visibility = "visible";
+                    document.all.showStats.value = "<< Show Stats of";
+                }
+            }
+        </script>
     </body>
 </html>

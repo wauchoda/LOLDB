@@ -68,13 +68,14 @@
             ?> 
         
         <!-- allows user to see their last input on update stats--->
-        <form name="editStat" action="editStat.php" method="POST">
-            How many games have you won? <input type="text" name="wins" value="<?php echo $stats["wins"];?>" /><br/>
-            How many games have you lost? <input type="text" name="losses" value="<?php echo $stats["losses"];?>"/><br/>
-            How many kills do you have? <input type="text" name="kills" value="<?php echo $stats["kills"];?>"/><br/>
-            How many deaths do you have? <input type="text" name="deaths" value="<?php echo $stats["deaths"];?>"/><br/>
-            How many assists do you have? <input type="text" name="assists" value="<?php echo $stats["assists"];?>"/><br/>
-
+        <div id="editStatss">
+            <form name="editStat" action="editStat.php" method="POST">
+                How many games have you won? <input type="text" name="wins" value="<?php echo $stats["wins"];?>" /><br/>
+                How many games have you lost? <input type="text" name="losses" value="<?php echo $stats["losses"];?>"/><br/>
+                How many kills do you have? <input type="text" name="kills" value="<?php echo $stats["kills"];?>"/><br/>
+                How many deaths do you have? <input type="text" name="deaths" value="<?php echo $stats["deaths"];?>"/><br/>
+                How many assists do you have? <input type="text" name="assists" value="<?php echo $stats["assists"];?>"/><br/>
+        </div>
             <input type="submit" name="saveStats" value="Save Changes"/>
             <input type="submit" name="back" value="Back to Your Stats"/>
         </form>
