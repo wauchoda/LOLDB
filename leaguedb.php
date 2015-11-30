@@ -19,14 +19,8 @@ and open the template in the editor.
         ?>
         <table border="black">
             <tr>
-                <th>username</th>
-                <th>wins</th>
-                <th>losses</th>
-                <th>kills</th>
-                <th>deaths</th>
-                <th>assists</th>
-            </tr>
-        </table>
+                <th>username</th><th>wins</th><th>losses</th><th>kills</th><th>deaths</th><th>assists</th>
+            </tr>  
         <?php
         $result = LeagueDB::getInstance()->get_stats_by_user_id($userID);
         while ($row = mysqli_fetch_array($result)) {
@@ -39,6 +33,7 @@ and open the template in the editor.
         }
         mysqli_free_result($result);
         ?>
+        </table>
         <!-- back to main page--->
         <form name="backToMainPage" action="index.php">
         <input type="submit" value="Back To Main Page"/>
