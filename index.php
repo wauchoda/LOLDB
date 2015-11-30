@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <input type="submit" name="MyStats" value="My Stats" onclick="javascript:showHideLogonForm()"/>
                 <form name="logon" action="index.php" method="POST" 
                         style="visibility: <?php if ($logonSuccess) echo "hidden"; else echo "visible";?>">
-            Username: <input type="text" name="user">
-            Password  <input type="password" name="userpassword">
+                    <div id ="userlog">Username: <input type="text" name="user"></div>
+            Password:  <input type="password" name="userpassword">
             <div class="error">
                 <?php
                 /* displays error message on unsuccesful login*/
