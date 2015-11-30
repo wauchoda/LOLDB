@@ -67,7 +67,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'manticore','thelevimatusproject@','test'),(3,'twoacestwo8s',NULL,'test'),(12,'sasha',NULL,'test');
+INSERT INTO `user` VALUES (1,'manticore','thelevimatusproject@','test');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,4 +127,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-29 21:59:39
+-- Dump completed on 2015-11-29 22:05:40
