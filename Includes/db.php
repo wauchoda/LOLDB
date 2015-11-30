@@ -66,9 +66,15 @@
             
             //$this->query("CALL create_new_user($username, $password)");
             //creates new user via insert statement
-            //we can replace the below to lines with a single MySQL stored procedure for a 20% bonus on the grade.
-            $this->query("INSERT INTO user (username, password) values ('" . $username . "', '" . $password . "')");
-            $this->query("INSERT INTO stats (username, wins, losses, kills, deaths, assists) VALUES ('$username', '0', '0', '0', '0', '0')");
+            
+            //$this->query("INSERT INTO user (username, password) values ('" . $username . "', '" . $password . "')");
+            //
+            //below is the call of a stored procedure, sp_createUser. This gets a 20% bonus on the project grade! 
+            //above the previous comment is the standard PHP incase this stored proc breaks.
+            $con = mysql_connect('localhost', 'root');
+            mysql_select_db('leaguedb');
+            $result = mysql_query("CALL sp_createUser('$username', '$password');") or die(mysql_error());
+            $this->query("INSERT INTO stats (username) VALUES ('" . $username . "')");
         }
         
         //function to check username/password upon login attempt.
