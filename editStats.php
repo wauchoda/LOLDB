@@ -15,7 +15,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class="welcome">
-            Your Stats
+            Your Match History
         </div>
         <div class="table">
             <table border="black">
@@ -25,11 +25,12 @@ and open the template in the editor.
                 $userID = LeagueDB::getInstance()->get_user_id_by_username($_SESSION["user"]);
                 $result = LeagueDB::getInstance()->get_stats_by_user_id($userID);
                 while($row = mysqli_fetch_array($result)) {
-                    echo "<tr><td>" . htmlentities($row['wins']) . "</td>";
-                    echo "<td>" . htmlentities($row['losses']) . "</td>";
+                    echo "<tr><td>" . htmlentities($row['cid']) . "</td>";
+                    echo "<td>" . htmlentities($row['win']) . "</td>";
                     echo "<td>" . htmlentities($row['kills']) . "</td>";
                     echo "<td>" . htmlentities($row['deaths']) . "</td>";
-                    echo "<td>" . htmlentities($row['assists']) . "</td></tr>\n";
+                    echo "<td>" . htmlentities($row['assists']) . "</td>";
+                    echo "<td>" . htmlentities($row['cs']) . "</td></tr>\n";
                 }
                 ?>
             </table>

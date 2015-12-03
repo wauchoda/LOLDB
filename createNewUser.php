@@ -5,7 +5,8 @@ require_once("Includes/db.php");
 /** other variables */
 $userNameIsUnique = true;
 $passwordIsValid = true;				
-$userIsEmpty = false;					
+$userIsEmpty = false;	
+$emailIsEmpty = false;
 $passwordIsEmpty = false;				
 $password2IsEmpty = false;
 
@@ -20,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["user"]=="") {
         $userIsEmpty = true;
     }
+    if ($_POST["email"]=="") {
+        $emailIsEmpty = true;
+    }
     if ($_POST["password"]=="") {
         $passwordIsEmpty = true;
     }
@@ -33,15 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      * If the data was validated successfully, add it as a new entry in the "league" database.
      * After adding the new entry, close the connection and redirect the application to editWishList.php.
      */
-    if (!$userIsEmpty && $userNameIsUnique && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
+    if (!$userIsEmpty && $userNameIsUnique && !$emailIsEmpty && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
         //$sql = LeagueDB::getInstance();
         //$result = mysqli_query($sql, 
             //"CALL create_new_user" . ($_POST['user'] . "," . $_POST['password']));
-        LeagueDB::getInstance()->create_user($_POST["user"], $_POST["password"]);
+        LeagueDB::getInstance()->create_user($_POST["user"], ($_POST["email"]), $_POST["password"]);
         //$this->query("CALL create_new_user($username, $password)");
         $_SESSION["user"] = $_POST['user'];
         echo $_SESSION["user"];
-        header('Location: editStats.php' );
+        header('Location: dashboard.php' );
         exit;
     }
     
@@ -65,7 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo ("<br/>");
             }
             ?>
-            Your name: <input type="text" name="user"/><br/>
+            Your username: <input type="text" name="user"/><br/>
+            Your email: <input type="text" name="email"/><br/>
+            <?php
+            if ($emailIsEmpty) {
+                echo ("Enter an email address, please!");
+                echo ("<br/>");
+            }
+            ?>
             Password: <input type="password" name="password"/><br/>
             <?php
             if ($passwordIsEmpty) {

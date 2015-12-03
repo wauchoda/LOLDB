@@ -8,7 +8,7 @@
         // db connection config variables
         private $user = 'root';
         private $pass = '';
-        private $dbName = 'leaguedb';
+        private $dbName = 'loldb';
         private $dbHost = 'localhost:3306';
         
         //This method must be static, and must return an instance of the object if the object
@@ -44,7 +44,7 @@
 
             $username = $this->real_escape_string($username);
 
-            $user = $this->query("SELECT id FROM user WHERE username = '"
+            $user = $this->query("SELECT uid FROM user WHERE username = '"
 
                     . $username . "'");
             if ($user->num_rows > 0){
@@ -55,26 +55,31 @@
         }
         
         //selects id information for user
-        public function get_stats_by_user_id($userID) {
-            return $this->query("SELECT id, username, wins, losses, kills, deaths, assists FROM stats WHERE id=" . $userID);
+        public function get_matchHist_by_username($username) {
+            return $this->query("SELECT champName, Win, Kills, Deaths, Assists, CS FROM matchHist WHERE username = '$username'");
+        }
+        
+        public function get_rankedStats_by_username($username) {
+            return $this->query("SELECT champName, Win, Kills, Deaths, Assists, CS FROM matchHist WHERE username = '$username' and ranked = TRUE");
+        }
+        public function get_normStats_by_username($username) {
+            return $this->query("SELECT champName, Win, Kills, Deaths, Assists, CS FROM matchHist WHERE username = '$username' and ranked = False");
         }
         
         //creates new user at sign up and adds to MySQL table
-        public function create_user ($username, $password){
+        public function create_user ($username, $email, $password){
             $username = $this->real_escape_string($username);
+            $email = $this->real_escape_string($email);
             $password = $this->real_escape_string($password);
             
-            //$this->query("CALL create_new_user($username, $password)");
             //creates new user via insert statement
+            //$this->query("INSERT INTO user (username, email, password) values ('" . $username . "', '" . $email . "', '" . $password . "')");
             
-            //$this->query("INSERT INTO user (username, password) values ('" . $username . "', '" . $password . "')");
-            //
-            //below is the call of a stored procedure, sp_createUser. This gets a 20% bonus on the project grade! 
+            //below is the call of a stored procedure, sp_createUser. This gets a bonus on the project grade! 
             //above the previous comment is the standard PHP incase this stored proc breaks.
             $con = mysql_connect('localhost', 'root');
-            mysql_select_db('leaguedb');
-            $result = mysql_query("CALL sp_createUser('$username', '$password');") or die(mysql_error());
-            $this->query("INSERT INTO stats (username) VALUES ('" . $username . "')");
+            mysql_select_db('loldb');
+            $result = mysql_query("CALL sp_createUser('$username', '$email', '$password');") or die(mysql_error());
         }
         
         //function to check username/password upon login attempt.
@@ -90,19 +95,57 @@
         
         //insert new stats to database
         //create insert to database function that accepts username from session
-        function insert_stats($username, $wins, $losses, $kills, $deaths, $assists){
+        function insert_stats($username, $champName, $win, $kills, $deaths, $assists, $cs, $ranked){
             //$username = $_SESSION['user'];
-            $wins = $this->real_escape_string($wins);
-            $losses = $this->real_escape_string($losses);
+            $champName = $this->real_escape_string($champName);
+            $win = $this->real_escape_string($win);
             $kills = $this->real_escape_string($kills);
             $deaths = $this->real_escape_string($deaths);
             $assists = $this->real_escape_string($assists);
+            $cs = $this->real_escape_string($cs);
+            $ranked = $this->real_escape_string($ranked);
             //SQL Update clause for users stats
-            $this->query("UPDATE stats SET wins = '$wins', losses = '$losses', kills = '$kills', deaths = '$deaths', assists = '$assists' WHERE username = '$username'");
-            //$this->query("INSERT INTO stats (username, wins, loses, kills, deaths, assists
-                            //SELECT '$username', '$wins', '$losses', '$kills', '$deaths', '$assists'");
+            //$this->query("UPDATE stats SET wins = '$wins', losses = '$losses', kills = '$kills', deaths = '$deaths', assists = '$assists' WHERE username = '$username'");
+            $this->query("INSERT INTO matchHist (username, champName, win, kills, deaths, assists, cs, ranked) "
+                    . "SELECT '$username', '$champName', '$win', '$kills', '$deaths', '$assists', '$cs', '$ranked'");
         }
         
+        //score AVG function below
+        public function get_User_Avg_Kills($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Kills) as AvgK from matchHist WHERE username = '$username'");
+            return $result;
+        }
+        public function get_User_Ranked_Avg_Kills($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Kills) as rAvgK from matchHist WHERE username = '$username' and ranked = true");
+            return $result;
+        }
+        public function get_User_unRanked_Avg_Kills($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Kills) as uAvgK from matchHist WHERE username = '$username' and ranked = false");
+            return $result;
+        }
+        public function get_User_Avg_Deaths($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Deaths) as AvgD from matchHist WHERE username = '$username'");
+            return $result;
+        }
+        public function get_User_Ranked_Avg_Deaths($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Deaths) as rAvgD from matchHist WHERE username = '$username' and ranked = true");
+            return $result;
+        }
+        public function get_User_unRanked_Avg_Deaths($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Deaths) as uAvgD from matchHist WHERE username = '$username' and ranked = false");
+            return $result;
+        }
+        public function get_User_Avg_Assists($username) {
+            $username = $this->real_escape_string($username);
+            $result = $this->query("select AVG(Assists) as AvgA from matchHist WHERE username = '$username'");
+            return $result;
+        }
     }
 /* 
  * To change this license header, choose License Headers in Project Properties.

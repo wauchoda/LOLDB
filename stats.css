@@ -72,6 +72,19 @@ leaguedb {
     text-align: center;
     margin:  50%;
 }
+
+.ranked {
+    display: inline-table;
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+
+.unranked {
+    display: inline-table;
+    text-align: center;
+    padding-left: 10px;
+}
 .showStats {
     text-align: center;
     margin-left: 30%;
@@ -112,10 +125,16 @@ leaguedb {
 }
 
 .button {
-    left: 10%;
-    top: 10%;
-    padding: 10px;
     text-align: center;
+    margin-top: 15%;
+    padding: 0px;
+
+}
+
+.dbbutton {
+    text-align: center;
+    margin-top: 2%;
+    padding: 2px;
 
 }
 

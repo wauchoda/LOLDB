@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($logonSuccess == true) {
         session_start();
         $_SESSION["user"] = $_POST["user"];
-        header('Location: editStats.php');
+        header('Location: dashboard.php');
         exit;
     }
 }
