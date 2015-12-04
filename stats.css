@@ -3,6 +3,41 @@ body {
     font-size: 12px;
     background-color: #fafafa;
 }
+
+header {
+    position: fixed;
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.Update, .back, .logout {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Update {
+    display: inline-block;
+    width: 100px;
+    float: left;
+    padding-right: 10px;
+}
+
+.back {
+    display: inline-block;
+    width: 100px;
+    float: left;
+    padding-left: 30px;
+}
+
+.logout {
+    display: inline-block;
+    width: 100px;
+    float: left;
+    padding-left: 30px;
+}
+
 input {
     font-family: arial, helvetica;
     font-size: 12px;
@@ -38,6 +73,7 @@ label {
     width: 800px;
     margin: 0 auto;
 }
+   
 
 logon {
     display: inline-block;
@@ -111,7 +147,10 @@ leaguedb {
 }
 
 .welcome {
-    top: 10%;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 120px;
     text-align: center;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 24px;

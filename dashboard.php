@@ -9,14 +9,34 @@ and open the template in the editor.
 ?>
 <html>
     <head>
-        <link href="stats.css" type="text/css" rel="stylesheet" media="all" />
+        <link href="stats.css" type="stats/css" rel="stylesheet" media="all" />
         <meta charset="UTF-8">
         <title></title>
     </head>
+    <header>
+           <div class="Update">
+                <form name ="addNewMatch" action="editMatches.php">
+                    <input type="submit" value="Update Match History">
+                </form>
+            </div>
+            <div class="back">    
+                <!-- return to index page--->
+                <form name="backToMainPage" action="index.php">
+                <input type="submit" value="Back To Main Page"/>
+                </form>
+            </div>
+            <div class="logout">
+                <form name="LogOut" action="index.php">
+                    <!--<input type="submit" value="Log Out"/>--->
+                    <a href="logout.php" >Logout</a>
+                </form>
+            </div>
+    </header>
     <body>
         <div class="welcome">
             Your Match History
         </div>
+       
         <div class="table">
             <table border="black">
                 <tr><th>Champion</th><th>W/L</th><th>Kills</th><th>Deaths<th>Assists</th><th>CS</th></tr>
@@ -86,20 +106,6 @@ and open the template in the editor.
                     ?>
                 </table>
             </div>
-        </div>
-            <div class="button">
-                <form name ="addNewMatch" action="editMatches.php">
-                    <input type="submit" value="Update Match History">
-                </form>
-                <!-- return to index page--->
-                <form name="backToMainPage" action="index.php">
-                <input type="submit" value="Back To Main Page"/>
-                </form>
-                <form type="LogOut" action="index.php">
-                    <!--<input type="submit" value="Log Out"/>--->
-                    <a href="logout.php" >Logout</a>
-                </form>
-            </div>
-        
+        </div>        
     </body>
 </html>
