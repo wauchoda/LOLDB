@@ -1,6 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `loldb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `loldb`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: loldb
 -- ------------------------------------------------------
@@ -78,6 +76,20 @@ LOCK TABLES `matchhist` WRITE;
 INSERT INTO `matchhist` VALUES (6,'manticore','Jinx',0,1,8,0,76,0),(7,'manticore','Graves',1,5,0,7,133,0),(8,'manticore','Kog\'Maw',1,12,3,2,177,0),(9,'manticore','Kog\'Maw',1,4,6,12,175,0),(10,'manticore','Kog\'Maw',1,3,3,12,125,0),(11,'manticore','Ashe',1,6,11,18,182,0),(12,'manticore','Kog\'Maw',0,0,5,1,103,0),(13,'manticore','Kog\'Maw',1,11,4,16,191,0),(14,'manticore','Kog\'Maw',0,5,3,5,236,0),(15,'manticore','LeBlanc',0,6,4,3,115,0),(16,'manticore','Graves',0,10,9,12,316,0),(17,'manticore','Kog\'Maw',0,8,7,11,184,0),(18,'manticore','LeBlanc',0,6,3,5,91,0),(19,'manticore','Veigar',1,5,4,3,82,0),(20,'manticore','Garen',0,2,6,1,112,0),(21,'manticore','Blitzcrank',1,2,2,13,22,1),(22,'manticore','Brand',0,10,8,6,123,1),(23,'manticore','Veigar',0,3,2,1,87,1),(24,'manticore','Ryze',0,2,7,7,109,1),(25,'manticore','Veigar',1,10,7,13,180,1),(26,'twoacestwo8s','Shyvana',0,1,7,0,81,0),(28,'twoacestwo8s','Maokai',1,2,2,15,51,0),(30,'twoacestwo8s','Jarvan IV',1,1,1,13,42,0),(31,'twoacestwo8s','Braum',1,3,3,15,49,0),(32,'twoacestwo8s','Maokai',1,7,3,15,42,0),(33,'twoacestwo8s','Vi',1,19,0,4,179,0),(34,'twoacestwo8s','Sion',0,8,10,11,158,0),(35,'twoacestwo8s','Garen',1,22,2,8,254,0),(36,'twoacestwo8s','Nasus',0,2,2,6,235,0),(37,'twoacestwo8s','Wukong',1,8,2,9,97,0),(38,'twoacestwo8s','Jarvan IV',0,14,7,13,188,0),(39,'twoacestwo8s','Maokai',1,8,7,25,120,0),(40,'twoacestwo8s','Jarvan IV',0,1,3,1,47,0),(41,'twoacestwo8s','Maokai',1,3,5,26,69,0),(42,'twoacestwo8s','Maokai',1,6,0,17,53,0),(43,'twoacestwo8s','Thresh',0,1,6,17,69,0),(44,'twoacestwo8s','Nautilus',1,9,5,21,68,0),(45,'twoacestwo8s','Annie',1,6,6,6,29,0),(46,'twoacestwo8s','Maokai',1,4,5,19,99,0),(47,'twoacestwo8s','Jarvan IV',1,7,7,26,143,0);
 /*!40000 ALTER TABLE `matchhist` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `playerunavgs`
+--
+
+DROP TABLE IF EXISTS `playerunavgs`;
+/*!50001 DROP VIEW IF EXISTS `playerunavgs`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `playerunavgs` AS SELECT 
+ 1 AS `username`,
+ 1 AS `avg(kills)`,
+ 1 AS `avg(deaths)`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `user`
@@ -195,6 +207,24 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Final view structure for view `playerunavgs`
+--
+
+/*!50001 DROP VIEW IF EXISTS `playerunavgs`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `playerunavgs` AS select `matchhist`.`username` AS `username`,avg(`matchhist`.`kills`) AS `avg(kills)`,avg(`matchhist`.`deaths`) AS `avg(deaths)` from `matchhist` where (`matchhist`.`ranked` = 0) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `useravgs`
 --
 
@@ -239,4 +269,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-03 23:52:08
+-- Dump completed on 2015-12-05 17:46:08
