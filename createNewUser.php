@@ -7,6 +7,7 @@ $userNameIsUnique = true;
 $passwordIsValid = true;				
 $userIsEmpty = false;	
 $emailIsEmpty = false;
+$emailIsUnique = true;
 $passwordIsEmpty = false;				
 $password2IsEmpty = false;
 
@@ -15,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     /** Check whether the user has filled in the user's name in the text field "user" */
     
     $userID = LeagueDB::getInstance()->get_user_id_by_username($_POST["user"]);
+    $email = LeagueDB::getInstance()->get_email($_POST["email"]);
     if ($userID) {
        $userNameIsUnique = false;
     }
@@ -23,6 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($_POST["email"]=="") {
         $emailIsEmpty = true;
+    }
+    if ($email) {
+        $emailIsUnique = false;
     }
     if ($_POST["password"]=="") {
         $passwordIsEmpty = true;
@@ -37,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      * If the data was validated successfully, add it as a new entry in the "league" database.
      * After adding the new entry, close the connection and redirect the application to editWishList.php.
      */
-    if (!$userIsEmpty && $userNameIsUnique && !$emailIsEmpty && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
+    if (!$userIsEmpty && $userNameIsUnique && !$emailIsEmpty && $emailIsUnique && !$passwordIsEmpty && !$password2IsEmpty && $passwordIsValid) {
         //$sql = LeagueDB::getInstance();
         //$result = mysqli_query($sql, 
             //"CALL create_new_user" . ($_POST['user'] . "," . $_POST['password']));
@@ -74,6 +79,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php
             if ($emailIsEmpty) {
                 echo ("Enter an email address, please!");
+                echo ("<br/>");
+            }
+            if (!$emailIsUnique) {
+                echo ("Opps! That email is already in use! Enter another email.");
                 echo ("<br/>");
             }
             ?>

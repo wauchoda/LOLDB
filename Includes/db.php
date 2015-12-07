@@ -54,6 +54,22 @@
                 return null;
         }
         
+        
+        //finds email
+        public function get_email($email) {
+
+            $email = $this->real_escape_string($email);
+
+            $user = $this->query("SELECT email FROM user WHERE email = '"
+
+                    . $email . "'");
+            if ($user->num_rows > 0){
+                $row = $user->fetch_row();
+                return $row[0];
+            } else
+                return null;
+        }
+        
         //selects id information for user
         public function get_matchHist_by_username($username) {
             return $this->query("SELECT champName, Win, Kills, Deaths, Assists, CS FROM matchHist WHERE username = '$username'");
